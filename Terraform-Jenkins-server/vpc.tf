@@ -1,4 +1,4 @@
-data "aws_availability_z0nes" "azs" {}
+data "aws_availability_zones" "azs" {}
 module "vpc" {
 source = "terraform-aws-modules/vpc/aws"
 name = "jenkins-server_vpc"

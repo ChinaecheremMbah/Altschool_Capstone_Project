@@ -1,8 +1,8 @@
 # create security group for the ec2 instance
-resource "aws_security_group" "Ec2_security_group" {
+resource "aws_security_group" "socks_shop_vpc" {
   name        = "ec2 security group"
   description = "allow access on ports 8080 and 22"
-  vpc_id      = "jenkins-server_vpc.public.id"
+  vpc_id      = "socks_shop_vpc.public.id"
 
   # allow access on port 8080
   ingress {

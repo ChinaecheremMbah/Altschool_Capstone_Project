@@ -15,3 +15,6 @@ Terraform-Jenkins-server/.terraform/modules/vpc
 *.log
 *.bak
 *.tmp
+
+# Ignore the tfvars files
+terraform.tfvars
