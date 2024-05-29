@@ -2,9 +2,9 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version =  "~> 5.0"
+      version = "~> 5.0"
     }
-    
+
   }
 }
 
@@ -29,15 +29,15 @@ resource "aws_subnet" "socks_shop_server" {
 locals {
   policy = jsonencode({
     Version = "2012-10-17",
-    Id = "Policy1711532867449",
+    Id      = "Policy1711532867449",
     Statement = [
       {
-        Sid = "Stmt1711532846175",
+        Sid    = "Stmt1711532846175",
         Effect = "Allow",
         Principal = {
           AWS = "arn:aws:iam::841368019569:user/Starr"
         },
-        Action = "s3:*",
+        Action   = "s3:*",
         Resource = "arn:aws:s3:::socks-shop-app"
       }
     ]

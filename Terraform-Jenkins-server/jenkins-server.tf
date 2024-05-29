@@ -37,22 +37,22 @@ resource "null_resource" "socks_shop" {
     host        = aws_instance.socks_shop_server.id
   }
 
-# copy the install_jenkins.sh file from your computer to the ec2 instance 
-provisioner  "file" { 
-  source      = "Jenkins-Server.sh"
-  destination = "/Terraform-Jenkins-server/Jenkins-Server.sh"
+  # copy the install_jenkins.sh file from your computer to the ec2 instance 
+  provisioner "file" {
+    source      = "Jenkins-Server.sh"
+    destination = "/Terraform-Jenkins-server/Jenkins-Server.sh"
   }
 
   # set permissions and run the install_jenkins.sh file
-provisioner "remote-exec" {
-  inline = [
-     "sudo chmod +x /Terraform-Jenkins-server/Jenkins-Server.sh",
-     "sh /Terraform-Jenkins-server/Jenkins-Server.sh"
+  provisioner "remote-exec" {
+    inline = [
+      "sudo chmod +x /Terraform-Jenkins-server/Jenkins-Server.sh",
+      "sh /Terraform-Jenkins-server/Jenkins-Server.sh"
     ]
   }
 
   # wait for ec2 to be created
-depends_on = [aws_ami.amazon_linux_2]
+  depends_on = [aws_ami.amazon_linux_2]
 
 }
 

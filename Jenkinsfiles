@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+
+    environment {
+        AWS_REGION = 'eu-west-2'
+        EKS_CLUSTER_NAME = 'my-eks-cluster'
+        DOCKER_IMAGE = 'my-docker-registry/my-microservice'
+        KUBECONFIG = credentials('my-kubeconfig') // Assume you have stored kubeconfig as Jenkins secret
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/your-username/your-repo.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    dockerImage = docker.build("${DOCKER_IMAGE}:${env.BUILD_NUMBER}")
+                }
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://my-docker-registry', 'docker-credentials-id') {
+                        dockerImage.push('latest')
+                        dockerImage.push("${env.BUILD_NUMBER}")
+                    }
+                }
+            }
+        }
+
+        stage('Deploy to EKS') {
+            steps {
+                withCredentials([file(credentialsId: 'my-kubeconfig', variable: 'KUBECONFIG')]) {
+                    script {
+                        sh 'aws eks update-kubeconfig --region $AWS_REGION --name $EKS_CLUSTER_NAME'
+                        sh 'kubectl apply -f k8s/deployment.yaml'
+                        sh 'kubectl apply -f k8s/service.yaml'
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}

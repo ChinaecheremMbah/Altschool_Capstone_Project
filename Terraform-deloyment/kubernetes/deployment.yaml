@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sock-shop-app
+  labels:
+    app: sock-shop-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sock-shop-app 
+  template:
+    metadata:
+      labels:
+        app: sock-shop-app
+    spec:
+    containers:
+    - name: sock-shop-app
+      image: my-docker-registry/my-microservice:latest
+      ports:
+      - containerPort: 80
+      env:
+      - name: ENV_VAR_NAME
+        value: "value"
+

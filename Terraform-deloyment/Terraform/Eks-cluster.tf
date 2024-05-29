@@ -17,12 +17,12 @@ module "eks" {
       max_size     = 3
       desired_size = 2
 
-      instance_types = ["t2.small"]
+      instance_types = ["t2.medium"]
     }
   }
 
   tags = {
     Environment = "development"
-    application = "socks-shop"
+    application = "sock-shop"
   }
 }
