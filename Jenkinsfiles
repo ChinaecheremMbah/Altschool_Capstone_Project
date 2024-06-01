@@ -3,15 +3,15 @@ pipeline {
 
     environment {
         AWS_REGION = 'eu-west-2'
-        EKS_CLUSTER_NAME = 'my-eks-cluster'
-        DOCKER_IMAGE = 'my-docker-registry/my-microservice'
+        EKS_CLUSTER_NAME = 'socks-shop-app'
+        DOCKER_IMAGE = 'my-docker-registry/sock-shop-app'
         KUBECONFIG = credentials('my-kubeconfig') // Assume you have stored kubeconfig as Jenkins secret
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/your-username/your-repo.git'
+                git 'https://github.com/ChinecheremMba/Altschool_Capstone_Project.git'
             }
         }
 

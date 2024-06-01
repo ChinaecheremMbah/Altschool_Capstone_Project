@@ -2,7 +2,7 @@
 FROM node:14
 
 # Set the working directory
-WORKDIR /usr/src/app
+WORKDIR /mnt/c/Users/chi isiaki/Desktop/Altschool_capstone_project/microservices-demo.github.io
 
 # Copy the package.json and package-lock.json files
 COPY package*.json ./
