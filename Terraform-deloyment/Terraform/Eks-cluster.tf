@@ -23,6 +23,6 @@ module "eks" {
 
   tags = {
     Environment = "development"
-    application = "sock-shop"
+    application = "socks-shop"
   }
 }
