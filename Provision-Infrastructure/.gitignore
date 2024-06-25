@@ -18,3 +18,7 @@ Terraform-Jenkins-server/.terraform/modules/vpc
 
 # Ignore the tfvars files
 terraform.tfvars
+
+# Ignore aws folders
+aws/
+awscliv2.zip
