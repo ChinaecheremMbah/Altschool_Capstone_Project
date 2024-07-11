@@ -1,0 +1,24 @@
+# Ignore Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Ignore .terraform directory and its contents
+.terraform/
+
+# Ignore Terraform lock file
+.terraform.lock.hcl
+
+# Ignore specific module directory
+Terraform-Jenkins-server/.terraform/modules/vpc
+
+# Other common ignores (optional)
+*.log
+*.bak
+*.tmp
+
+# Ignore the tfvars files
+terraform.tfvars
+
+# Ignore aws folders
+aws/
+awscliv2.zip
